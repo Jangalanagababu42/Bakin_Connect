@@ -101,7 +101,6 @@ function PostProvider({ children }) {
 
   useEffect(() => {
     getAllPosts();
-    getAllBookMarks();
   }, []);
 
   return (
