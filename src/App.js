@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import RootLayout from "./components/RootLayout";
+import HomePage from "./features/home/HomePage";
+import ExplorePage from "./features/explore/ExplorePage";
+import BookMarkPage from "./features/bookmarks/BookMarkPage";
+import LikesPostPage from "./features/likedposts/LikesPostPage";
+import Login from "./features/authentication/Login";
+import Signup from "./features/authentication/Signup";
+import Profile from "./features/profile/Profile";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main>
+      <Routes>
+        <Route path="/" element={<RootLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path="/explore" element={<ExplorePage />} />
+          <Route path="/bookmarks" element={<BookMarkPage />} />
+          <Route path="/likedposts" element={<LikesPostPage />} />
+          <Route path="/profile/:username" element={<Profile />} />
+        </Route>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+      </Routes>
+    </main>
   );
 }
 
