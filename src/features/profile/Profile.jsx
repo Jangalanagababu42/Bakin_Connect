@@ -13,7 +13,6 @@ function Profile() {
   const [userProfile, setUserProfile] = useState();
   const [userPosts, setUserPosts] = useState();
   const { username } = useParams();
-  console.log(username, "username");
 
   const {
     userState: { users },

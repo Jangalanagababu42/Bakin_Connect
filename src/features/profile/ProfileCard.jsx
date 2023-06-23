@@ -3,16 +3,18 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 
 function ProfileCard({ profile }) {
-  const { authUser } = useAuth();
+  const { authUser, setAuthToken, setAuthUser } = useAuth();
   const navigate = useNavigate();
   const LogoutHandler = () => {
     localStorage.removeItem("authUser");
     localStorage.removeItem("authToken");
+    setAuthToken(null);
+    setAuthUser(null);
     navigate("/login");
   };
   const checkLoggedInUser = (authUser, profile) =>
-    authUser.username === profile.username;
-  console.log(checkLoggedInUser(authUser, profile));
+    authUser?.username === profile.username;
+
   return (
     <div className="flex justify-around w-full items-center gap-4 rounded-lg shadow-2xl p-5">
       <img

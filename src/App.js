@@ -7,12 +7,20 @@ import LikesPostPage from "./features/likedposts/LikesPostPage";
 import Login from "./features/authentication/Login";
 import Signup from "./features/authentication/Signup";
 import Profile from "./features/profile/Profile";
+import RequiresAuth from "./components/RequiresAuth";
 
 function App() {
   return (
     <main>
       <Routes>
-        <Route path="/" element={<RootLayout />}>
+        <Route
+          path="/"
+          element={
+            <RequiresAuth>
+              <RootLayout />
+            </RequiresAuth>
+          }
+        >
           <Route index element={<HomePage />} />
           <Route path="/explore" element={<ExplorePage />} />
           <Route path="/bookmarks" element={<BookMarkPage />} />

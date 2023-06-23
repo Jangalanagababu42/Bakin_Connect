@@ -8,11 +8,10 @@ function AuthProvider({ children }) {
   const [authToken, setAuthToken] = useState(
     localStorageAuth ? localStorageAuth : ""
   );
-  //console.log(authToken, "authtoken");
+
   const [authUser, setAuthUser] = useState(
     localStorageUser ? JSON.parse(localStorageUser) : null
   );
-  //console.log(authUser, "authUser");
 
   return (
     <AuthContext.Provider

@@ -3,8 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import SignupService from "./services/SignupService";
+import { useAuth } from "../../contexts/AuthContext";
 
 function Signup() {
+  const { setAuthToken, setAuthUser } = useAuth();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showcPassword, setShowcPassword] = useState(false);
@@ -20,11 +22,13 @@ function Signup() {
     e.preventDefault();
     try {
       const response = await SignupService(signupData);
-      console.log(response);
+
       if (response.status === 201) {
         const { encodedToken, createdUser } = response.data;
         localStorage.setItem("authToken", encodedToken);
         localStorage.setItem("authUser", JSON.stringify(createdUser));
+        setAuthToken(encodedToken);
+        setAuthUser(createdUser);
         navigate("/");
       }
     } catch (error) {

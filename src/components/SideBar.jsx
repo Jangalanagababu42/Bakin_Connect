@@ -5,8 +5,9 @@ import {
   faHouse,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import PostModal from "../features/home/PostModal";
 
 const ActiveStyle = ({ isActive }) =>
   isActive
@@ -19,6 +20,7 @@ const getNavItem = (iconName, text) => (
   </div>
 );
 function SideBar() {
+  const [openModal, setOpenModal] = useState(false);
   return (
     <div className="grid col-span-2 bg-slate-200 h-screen ">
       <div className="ml-5  ">
@@ -34,39 +36,14 @@ function SideBar() {
         <NavLink to="/likedposts" style={ActiveStyle}>
           {getNavItem(faHeart, "LikedPosts")}
         </NavLink>
-        <button className=" bg-primary	 w-3/4	 border-solid border-2 border-white rounded-2xl text-white	">
+        <button
+          className=" bg-primary	 w-3/4	 border-solid border-2 border-white rounded-2xl text-white	"
+          onClick={() => setOpenModal(true)}
+        >
           Post
         </button>
+        {openModal && <PostModal closeModal={setOpenModal} />}
       </div>
-      <div></div>
-      {/* <ul className=" px-20">
-        <li>
-          <div className=" flex items-center">
-            <FontAwesomeIcon icon={faHouse} />
-            <NavLink className="ml-2" to="/">
-              Home
-            </NavLink>
-          </div>
-        </li>
-        <li>
-          <div>
-            <FontAwesomeIcon icon={faCompass} />
-            <NavLink to="/explore">Explore</NavLink>
-          </div>
-        </li>
-        <li>
-          <div>
-            <FontAwesomeIcon icon={faBookmark} />
-            <NavLink to="/bookmarks">BookMark</NavLink>
-          </div>
-        </li>
-        <li>
-          <div>
-            <FontAwesomeIcon icon={faHeart} />
-            <NavLink to="/likedposts">LikedPosts</NavLink>
-          </div>
-        </li>
-      </ul> */}
     </div>
   );
 }

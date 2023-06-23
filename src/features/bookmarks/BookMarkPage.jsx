@@ -1,12 +1,13 @@
 import React from "react";
 
 import DisplayPost from "../home/DisplayPost";
-import { usePost } from "../../contexts/PostContext";
+
+import { useAuth } from "../../contexts/AuthContext";
 
 function BookMarkPage() {
-  const {
-    postState: { bookmarks },
-  } = usePost();
+  const { authUser } = useAuth();
+
+  const { bookmarks } = authUser;
   return (
     <div className="flex flex-col  justify-items-center w-3/5	gap-4">
       <div className="flex justify-center font-semibold text-primary text-xl">

@@ -4,7 +4,6 @@ import {
   faEllipsis,
   faHeart,
   faShareNodes,
-  faThumbsUp,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
@@ -12,7 +11,7 @@ import { useUser } from "../../contexts/UserContext";
 import { useAuth } from "../../contexts/AuthContext";
 import { usePost } from "../../contexts/PostContext";
 
-function DisplayPost({ post }) {
+function DisplayPost({ post, index }) {
   const [userDetails, setUserDetails] = useState(null);
   const {
     addBookmarkHandler,
@@ -28,17 +27,16 @@ function DisplayPost({ post }) {
   useEffect(() => {
     setUserDetails(users.filter((user) => user.username === post.username)[0]);
   }, [post.username, users]);
-  // //console.log(post, "post");
-  // //console.log(userDetails, "userDetails");
-  console.log(authUser, "auth");
-  console.log(authUser.bookmarks, "bookmarks");
+
   const bookmarkedByUser = () =>
-    authUser.bookmarks.filter((bpost) => bpost._id === post._id).length !== 0;
+    authUser?.bookmarks.filter((bpost) => bpost._id === post._id).length !== 0;
+
   const likedByUser = () =>
-    post?.likes?.likeBy?.filter((user) => user._id === authUser._id).length !==
-    0;
+    post?.likes?.likedBy?.filter((user) => user.username === authUser?.username)
+      ?.length !== 0;
+
   const likeClickHandler = () => {
-    if (!likedByUser()) {
+    if (likedByUser() === true) {
       DisLikeHandler(post._id);
     } else {
       LikeHandler(post._id);
@@ -54,13 +52,13 @@ function DisplayPost({ post }) {
   return (
     <>
       {userDetails && (
-        <div className="flex flex-col gap-4 rounded-lg shadow-2xl p-5">
+        <div className="flex flex-col gap-4 rounded-lg shadow-2xl p-5 mb-10">
           <div className="flex gap-4 flex-grow">
             <img
               className="rounded-full cursor-pointer w-14 h-14 object-cover"
               src={
-                userDetails.username === authUser.username
-                  ? authUser.avatarUrl
+                userDetails.username === authUser?.username
+                  ? authUser?.avatarUrl
                   : userDetails.avatarUrl
               }
               // src="https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png"
@@ -83,7 +81,7 @@ function DisplayPost({ post }) {
                 </p>
               </div>
               <div className="relative">
-                {userDetails.username === authUser.username && (
+                {userDetails.username === authUser?.username && (
                   <FontAwesomeIcon
                     className="absolute right-0"
                     icon={faEllipsis}
@@ -94,36 +92,42 @@ function DisplayPost({ post }) {
           </div>
           <div className="cursor-pointer flex flex-col gap-6 flex-grow">
             <p className="px-4">{post?.content}</p>
-            <img
-              src="https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png"
-              alt="logo"
-              className="rounded-lg max-h-80 w-full object-contain"
-            />
+            {post.mediaURL && (
+              <img
+                // src="https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png"
+                src={post.mediaURL}
+                alt="logo"
+                className="rounded-lg max-h-80 w-full object-contain"
+              />
+            )}
             <hr />
           </div>
           <div className="flex gap-4 flex-grow py-1 items-center justify-evenly font-normal">
-            <div
-              className="flex items-center gap-1 cursor-pointer"
-              onClick={(e) => likeClickHandler(e)}
-            >
+            <div className="flex items-center gap-1 cursor-pointer">
               {likedByUser() ? (
-                <FontAwesomeIcon icon={faHeart} />
+                <FontAwesomeIcon
+                  icon={faHeart}
+                  style={{ color: "red" }}
+                  onClick={(e) => likeClickHandler()}
+                />
               ) : (
-                <FontAwesomeIcon icon={faThumbsUp} />
+                <FontAwesomeIcon
+                  icon={faHeart}
+                  onClick={(e) => likeClickHandler()}
+                />
               )}
-              <span>{post?.likes?.likesCount}</span>
+              {post?.likes?.likeCount > 0 && (
+                <span>{post?.likes?.likeCount}</span>
+              )}
             </div>
             <div
               className="flex items-center gap-1 cursor-pointer"
               onClick={(e) => bookmarkClickHandler(e)}
             >
               {bookmarkedByUser() ? (
-                <FontAwesomeIcon
-                  icon={faBookmark}
-                  style={{ color: "#8993a4" }}
-                />
+                <FontAwesomeIcon icon={faBookmark} style={{ color: "black" }} />
               ) : (
-                <FontAwesomeIcon icon={faBookmark} />
+                <FontAwesomeIcon icon={faBookmark} style={{ color: "grey" }} />
               )}
             </div>
             <div className="flex items-center gap-1 cursor-pointer">

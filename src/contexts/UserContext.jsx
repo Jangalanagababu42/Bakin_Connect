@@ -16,7 +16,6 @@ function UserProvider({ children }) {
       data: { users },
     } = response;
     userDispatch({ type: USER_ACTIONS.getusers, payload: users });
-    ////console.log(response);
   };
 
   useEffect(() => {

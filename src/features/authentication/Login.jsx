@@ -4,8 +4,10 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import LoginService from "./services/LoginService";
+import { useAuth } from "../../contexts/AuthContext";
 
 function Login() {
+  const { setAuthToken, setAuthUser } = useAuth();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [loginData, setLoginData] = useState({ username: "", password: "" });
@@ -22,6 +24,8 @@ function Login() {
         const { encodedToken, foundUser } = response.data;
         localStorage.setItem("authToken", encodedToken);
         localStorage.setItem("authUser", JSON.stringify(foundUser));
+        setAuthToken(encodedToken);
+        setAuthUser(foundUser);
         navigate("/");
       }
     } catch (error) {
@@ -30,9 +34,19 @@ function Login() {
   };
   const GuestModeLogin = async (e) => {
     e.preventDefault();
-    const response = await LoginService(GuestData);
-    navigate("/");
-    console.log(response);
+    try {
+      const response = await LoginService(GuestData);
+      if (response.status === 200) {
+        const { encodedToken, foundUser } = response.data;
+        localStorage.setItem("authToken", encodedToken);
+        localStorage.setItem("authUser", JSON.stringify(foundUser));
+        setAuthToken(encodedToken);
+        setAuthUser(foundUser);
+        navigate("/");
+      }
+    } catch (error) {
+      console.log(error.response.data.errors[0], "error");
+    }
   };
   return (
     <div
@@ -58,11 +72,7 @@ function Login() {
           Sign in
         </h2>
         <div className="mt-12">
-          <form
-            onSubmit={(e) => {
-              LoginPageHandler(e);
-            }}
-          >
+          <form>
             <div className="flex flex-col">
               <div className="text-sm font-bold text-gray tracking-wide">
                 UserName
@@ -115,6 +125,9 @@ function Login() {
               <button
                 className="bg-primary text-white p-3 w-full rounded-full tracking-wide font-semibold font-display focus:outline-none focus:shadow-outline active:bg-blue-500 shadow-lg"
                 type="submit"
+                onClick={(e) => {
+                  LoginPageHandler(e);
+                }}
               >
                 Log In
               </button>

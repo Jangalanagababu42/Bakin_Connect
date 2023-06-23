@@ -9,7 +9,7 @@ function Suggestions() {
   } = useUser();
   const { authUser } = useAuth();
   const suggestedUsers = users.filter(
-    (user) => user.username !== authUser.username
+    (user) => user.username !== authUser?.username
   );
   return (
     <div className="grid col-span-3 bg-slate-200 ">
@@ -17,12 +17,6 @@ function Suggestions() {
         {suggestedUsers.map((user) => (
           <UserCard user={user} />
         ))}
-
-        {/* <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard /> */}
       </div>
     </div>
   );

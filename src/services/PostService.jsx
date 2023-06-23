@@ -16,25 +16,21 @@ export const getAllBookMarksService = (token) => {
 };
 
 export const AddBookMarkService = (token, postId) => {
-  console.log(token, postId);
   const config = { headers: { authorization: `${token}` } };
   return axios.post(`/api/users/bookmark/${postId}`, {}, config);
 };
 
 export const RemoveBookMarkService = (token, postId) => {
-  console.log(token, postId);
   const config = { headers: { authorization: `${token}` } };
   return axios.post(`/api/users/remove-bookmark/${postId}`, {}, config);
 };
 
 export const LikeService = (token, postId) => {
-  console.log(token, postId);
   const config = { headers: { authorization: `${token}` } };
   return axios.post(`/api/posts/like/${postId}`, {}, config);
 };
 
-export const DisikeService = (token, postId) => {
-  console.log(token, postId);
+export const DislikeService = (token, postId) => {
   const config = { headers: { authorization: `${token}` } };
   return axios.post(`/api/posts/dislike/${postId}`, {}, config);
 };
