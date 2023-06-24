@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { usePost } from "../contexts/PostContext";
 
 function UserCard({ user }) {
+  const { followHandler } = usePost();
+
   return (
     <div className="flex flex-row relative  ">
       {" "}
@@ -25,8 +28,11 @@ function UserCard({ user }) {
         </Link>
       </div>
       <div>
-        <button className="  absolute right-20 top-4  text-white bg-primary border-solid border-2  py-1 px-2 border-white rounded-2xl">
-          +Follow
+        <button
+          className="  absolute right-20 top-4  text-white bg-primary border-solid border-2  py-1 px-2 border-white rounded-2xl hover:bg-white hover:text-primary hover:border-primary "
+          onClick={() => followHandler(user._id)}
+        >
+          Follow
         </button>
       </div>
     </div>

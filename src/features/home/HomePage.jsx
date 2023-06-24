@@ -11,6 +11,7 @@ function HomePage() {
   } = usePost();
   const [followingPosts, setFollowingPosts] = useState();
   const { authUser } = useAuth();
+
   useEffect(() => {
     const filterposts = posts.filter(
       (currPost) =>

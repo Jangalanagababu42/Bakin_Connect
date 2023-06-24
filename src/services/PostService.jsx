@@ -34,3 +34,12 @@ export const DislikeService = (token, postId) => {
   const config = { headers: { authorization: `${token}` } };
   return axios.post(`/api/posts/dislike/${postId}`, {}, config);
 };
+export const FollowService = (token, followId) => {
+  const config = { headers: { authorization: `${token}` } };
+  return axios.post(`/api/users/follow/${followId}`, {}, config);
+};
+
+export const UnFollowService = (token, followId) => {
+  const config = { headers: { authorization: `${token}` } };
+  return axios.post(`/api/users/unfollow/${followId}`, {}, config);
+};

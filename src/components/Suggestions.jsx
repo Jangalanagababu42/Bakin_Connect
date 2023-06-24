@@ -9,8 +9,15 @@ function Suggestions() {
   } = useUser();
   const { authUser } = useAuth();
   const suggestedUsers = users.filter(
-    (user) => user.username !== authUser?.username
+    (outeruser) =>
+      !authUser.following.find(
+        (user) => outeruser.username === user.username
+      ) && outeruser.username !== authUser?.username
   );
+
+  console.log(authUser);
+  console.log(suggestedUsers, "suggestedUsers");
+
   return (
     <div className="grid col-span-3 bg-slate-200 ">
       <div className="divide-y">

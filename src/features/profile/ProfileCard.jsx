@@ -1,9 +1,14 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
+import { usePost } from "../../contexts/PostContext";
 
 function ProfileCard({ profile }) {
   const { authUser, setAuthToken, setAuthUser } = useAuth();
+  const { followHandler, unFollowHandler } = usePost();
+  const isFollowing = () =>
+    authUser.following.filter((user) => user.username === profile.username)
+      .length !== 0;
   const navigate = useNavigate();
   const LogoutHandler = () => {
     localStorage.removeItem("authUser");
@@ -35,10 +40,17 @@ function ProfileCard({ profile }) {
             >
               Edit Profile
             </button>
+          ) : isFollowing() ? (
+            <button
+              className="py-1 px-2 ring-1 rounded-md text-sm sm:text-xs"
+              onClick={() => unFollowHandler(profile._id)}
+            >
+              UnFollow
+            </button>
           ) : (
             <button
-              className="py-1 px-2 ring-1 rounded-md text-sm sm:text-xs
-          "
+              className="py-1 px-2 ring-1 rounded-md text-sm sm:text-xs"
+              onClick={() => followHandler(profile._id)}
             >
               Follow
             </button>

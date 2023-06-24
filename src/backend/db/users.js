@@ -1,9 +1,8 @@
-import { v4 as uuid } from "uuid";
 import { formatDate } from "../utils/authUtils";
 
 export const users = [
   {
-    _id: uuid(),
+    _id: "t7cZfWIp-q",
     firstName: "Adarsh",
     lastName: "Balika",
     username: "adarshbalika",
@@ -17,7 +16,7 @@ export const users = [
     updatedAt: formatDate(),
   },
   {
-    _id: uuid(),
+    _id: "79Gksh9otl",
     firstName: "John",
     lastName: "Doe",
     username: "johndoe",
@@ -31,7 +30,7 @@ export const users = [
     updatedAt: formatDate(),
   },
   {
-    _id: uuid(),
+    _id: "1T6Be1QpLm",
     firstName: "Jane",
     lastName: "Doe",
     username: "janedoe",
@@ -45,7 +44,7 @@ export const users = [
     updatedAt: formatDate(),
   },
   {
-    _id: uuid(),
+    _id: "LCrc9f0Zl0",
     firstName: "Carl",
     lastName: "Smith",
     username: "carlsmith",
@@ -59,7 +58,7 @@ export const users = [
   },
 
   {
-    _id: uuid(),
+    _id: "o5gzWjEeX_",
     firstName: "Jangala",
     lastName: "Nagababu",
     username: "Nagababu",
@@ -74,7 +73,7 @@ export const users = [
   },
 
   {
-    _id: uuid(),
+    _id: "M1NR81Bzlz",
     firstName: "Alex",
     lastName: "Maxwell",
     username: "alexmaxwell",
@@ -89,7 +88,7 @@ export const users = [
   },
 
   {
-    _id: uuid(),
+    _id: "qq8zWjEeXd",
     firstName: "Sophia",
     lastName: "Jones",
     username: "sophiajones",

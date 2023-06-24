@@ -1,4 +1,3 @@
-import { v4 as uuid } from "uuid";
 import { formatDate } from "../utils/authUtils";
 
 /**
@@ -8,7 +7,7 @@ import { formatDate } from "../utils/authUtils";
 
 export const posts = [
   {
-    _id: uuid(),
+    _id: "xhzTkUi2Nt",
     content: "Nice Weather Today!!",
     mediaURL: "",
     likes: {
@@ -18,7 +17,7 @@ export const posts = [
     },
     comments: [
       {
-        _id: uuid(),
+        _id: "okzxcf",
         username: "janedoe",
         text: "I agree!! Feels like we should go for outing. What say?",
         votes: {
@@ -32,7 +31,7 @@ export const posts = [
     updatedAt: formatDate(),
   },
   {
-    _id: uuid(),
+    _id: "siFFxfYI1s",
     content: "Started my Baking journey! Look what I made.",
     mediaURL:
       "https://res.cloudinary.com/dtrjdcrme/video/upload/v1652188886/upload-socialmedia/oikev6eomsgahnvxcijd.mp4",
@@ -47,7 +46,7 @@ export const posts = [
     updatedAt: formatDate(),
   },
   {
-    _id: uuid(),
+    _id: "3XHvLP1fg",
     content: "I made this cake for my friend's birthday. Check it out",
     mediaURL:
       "https://res.cloudinary.com/dtrjdcrme/image/upload/v1652188492/upload-socialmedia/cakegif_q11mfm.webp",
@@ -58,7 +57,7 @@ export const posts = [
     },
     comments: [
       {
-        _id: uuid(),
+        _id: "6nImWvImxo",
         username: "johndoe",
         text: "That's mouth watering! Could you make one for my Birthday as well?",
         votes: {
@@ -72,7 +71,7 @@ export const posts = [
     updatedAt: formatDate(),
   },
   {
-    _id: uuid(),
+    _id: "MTYtVhecCj",
     content:
       "You are never too old to set another goal or to dream a new dream.",
     mediaURL: "",
@@ -87,7 +86,7 @@ export const posts = [
     updatedAt: formatDate(),
   },
   {
-    _id: uuid(),
+    _id: "3XHvLP9kC",
     content: "Yayy! Its my Birthday Today. Made this cake for myself!",
     mediaURL:
       "https://res.cloudinary.com/dtrjdcrme/image/upload/v1647014336/ecommerce/chocolatecake4.webp",
@@ -98,7 +97,7 @@ export const posts = [
     },
     comments: [
       {
-        _id: uuid(),
+        _id: "EO7iOPN9n8",
         username: "carlsmith",
         text: "Happy Birthday! Enjoy your Day!!",
         votes: {
@@ -107,7 +106,7 @@ export const posts = [
         },
       },
       {
-        _id: uuid(),
+        _id: "QK52wf6HI1",
         username: "janedoe",
         text: "Wow! Looks Amazzing! Happy Birthday!",
         votes: {
@@ -121,7 +120,7 @@ export const posts = [
     updatedAt: formatDate(),
   },
   {
-    _id: uuid(),
+    _id: "tHaThLyFQh",
     content:
       "Life has got all those twists and turns. You’ve got to hold on tight and off you go.",
     mediaURL: "",
@@ -136,7 +135,7 @@ export const posts = [
     updatedAt: formatDate(),
   },
   {
-    _id: uuid(),
+    _id: "G-Gi3lSZP9",
     content: "When you have a dream, you’ve got to grab it and never let go.",
     mediaURL: "",
     likes: {
@@ -150,7 +149,7 @@ export const posts = [
     updatedAt: formatDate(),
   },
   {
-    _id: uuid(),
+    _id: "GeMUAdi9mh",
     content:
       "No matter what people tell you, words and ideas can change the world.",
     mediaURL: "",
@@ -165,7 +164,7 @@ export const posts = [
     updatedAt: formatDate(),
   },
   {
-    _id: uuid(),
+    _id: "IyUlYXTrzZ",
     content: "Who's up for Pineapple Pastry?",
     mediaURL:
       "https://res.cloudinary.com/dtrjdcrme/image/upload/v1647014828/ecommerce/pineapplemuffin1.webp",
@@ -176,7 +175,7 @@ export const posts = [
     },
     comments: [
       {
-        _id: uuid(),
+        _id: "6nIffvImxo",
         username: "sophiajones",
         text: "Oh! That looks Delicious!",
         votes: {
@@ -190,7 +189,7 @@ export const posts = [
     updatedAt: formatDate(),
   },
   {
-    _id: uuid(),
+    _id: "Ie92xOSVeU",
     content:
       "Check out this amazing video from BakinZone https://bakinzone.netlify.app/videos/qtlhdIfojmc",
     mediaURL: "",
@@ -201,7 +200,7 @@ export const posts = [
     },
     comments: [
       {
-        _id: uuid(),
+        _id: "6fgd534s",
         username: "janedoe",
         text: "Yes! I am also learning from there!",
         votes: {
@@ -215,7 +214,7 @@ export const posts = [
     updatedAt: formatDate(),
   },
   {
-    _id: uuid(),
+    _id: "xhzTkUyfNt",
     content: "Believe in yourself! Rest all will fall in place.",
     mediaURL: "",
     likes: {
@@ -225,7 +224,7 @@ export const posts = [
     },
     comments: [
       {
-        _id: uuid(),
+        _id: "unImWvIzbf",
         username: "Nagababu",
         text: "So True!!",
         votes: {
@@ -239,7 +238,7 @@ export const posts = [
     updatedAt: formatDate(),
   },
   {
-    _id: uuid(),
+    _id: "CCmJpDnnQQ",
     content:
       "You can get everything in life you want if you will just help enough other people get what they want.",
     mediaURL: "",
@@ -255,7 +254,7 @@ export const posts = [
   },
 
   {
-    _id: uuid(),
+    _id: "Z_TZT_3EAw",
     content:
       "If you believe something needs to exist, if it's something you want to use yourself, don't let anyone ever stop you from doing it.",
     mediaURL: "",
@@ -271,7 +270,7 @@ export const posts = [
   },
 
   {
-    _id: uuid(),
+    _id: "e-knMEsoLq",
     content: "More is lost by indecision than wrong decision.",
     mediaURL: "",
     likes: {
@@ -286,7 +285,7 @@ export const posts = [
   },
 
   {
-    _id: uuid(),
+    _id: "VY14RsXC7G",
     content:
       "The reason we struggle with insecurity is because we compare our behind-the-scenes with everyone else’s highlight reel.",
     mediaURL: "",
@@ -302,7 +301,7 @@ export const posts = [
   },
 
   {
-    _id: uuid(),
+    _id: "l9pedEMjZS",
     content: "If you don’t risk anything, you risk even more.",
     mediaURL: "",
     likes: {
@@ -317,7 +316,7 @@ export const posts = [
   },
 
   {
-    _id: uuid(),
+    _id: "lbW4dlCpNC",
     content: "If it makes you nervous, you’re doing it right.",
     mediaURL: "",
     likes: {
@@ -332,7 +331,7 @@ export const posts = [
   },
 
   {
-    _id: uuid(),
+    _id: "k-Vwd2d7Vt",
     content:
       "I learned a long time ago that there is something worse than missing the goal, and that’s not pulling the trigger.",
     mediaURL: "",
@@ -348,7 +347,7 @@ export const posts = [
   },
 
   {
-    _id: uuid(),
+    _id: "R2lAuXvK7V",
     content:
       "Success is stumbling from failure to failure with no loss of enthusiasm. Love this quote by Winston Churchill.",
     mediaURL: "",
@@ -364,7 +363,7 @@ export const posts = [
   },
 
   {
-    _id: uuid(),
+    _id: "G5xd30tMCR",
     content:
       "Optimism is the faith that leads to achievement. Nothing can be done without hope and confidence.",
     mediaURL: "",
@@ -380,7 +379,7 @@ export const posts = [
   },
 
   {
-    _id: uuid(),
+    _id: "lF8cnfPAe9",
     content:
       "Life is like riding a bicycle. To keep your balance you must keep moving.",
     mediaURL: "",
@@ -396,7 +395,7 @@ export const posts = [
   },
 
   {
-    _id: uuid(),
+    _id: "stfTkUi2Nt",
     content:
       "“Do not wait for the perfect time and place to enter, for you are already onstage.",
     mediaURL: "",
@@ -412,7 +411,7 @@ export const posts = [
   },
 
   {
-    _id: uuid(),
+    _id: "quiTkUi2Nt",
     content: "It is a rough road that leads to the heights of greatness.",
     mediaURL: "",
     likes: {

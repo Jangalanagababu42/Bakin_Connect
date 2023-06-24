@@ -3,9 +3,11 @@ import {
   AddBookMarkService,
   AddPostService,
   DislikeService,
+  FollowService,
   LikeService,
   PostService,
   RemoveBookMarkService,
+  UnFollowService,
   getAllBookMarksService,
 } from "../services/PostService";
 import {
@@ -96,7 +98,25 @@ function PostProvider({ children }) {
 
     postDispatch({ type: POST_ACTIONS.dislike, payload: { posts: posts } });
   };
-
+  const followHandler = async (followuserId) => {
+    const response = await FollowService(authToken, followuserId);
+    console.log(response);
+    const {
+      data: { followUser, user },
+    } = response;
+    console.log(followUser, "followUser");
+    setAuthUser(user);
+  };
+  const unFollowHandler = async (followuserId) => {
+    const response = await UnFollowService(authToken, followuserId);
+    console.log(response);
+    const {
+      data: { followUser, user },
+    } = response;
+    console.log(followUser, "followUser");
+    setAuthUser(user);
+  };
+  console.log(authUser, "auth");
   useEffect(() => {
     getAllPosts();
   }, []);
@@ -112,6 +132,8 @@ function PostProvider({ children }) {
         removePostFromBookmarkHandler,
         LikeHandler,
         DisLikeHandler,
+        followHandler,
+        unFollowHandler,
       }}
     >
       {children}

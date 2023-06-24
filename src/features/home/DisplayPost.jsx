@@ -36,7 +36,7 @@ function DisplayPost({ post, index }) {
       ?.length !== 0;
 
   const likeClickHandler = () => {
-    if (likedByUser() === true) {
+    if (likedByUser()) {
       DisLikeHandler(post._id);
     } else {
       LikeHandler(post._id);
@@ -103,18 +103,14 @@ function DisplayPost({ post, index }) {
             <hr />
           </div>
           <div className="flex gap-4 flex-grow py-1 items-center justify-evenly font-normal">
-            <div className="flex items-center gap-1 cursor-pointer">
+            <div
+              className="flex items-center gap-1 cursor-pointer"
+              onClick={(e) => likeClickHandler()}
+            >
               {likedByUser() ? (
-                <FontAwesomeIcon
-                  icon={faHeart}
-                  style={{ color: "red" }}
-                  onClick={(e) => likeClickHandler()}
-                />
+                <FontAwesomeIcon icon={faHeart} style={{ color: "red" }} />
               ) : (
-                <FontAwesomeIcon
-                  icon={faHeart}
-                  onClick={(e) => likeClickHandler()}
-                />
+                <FontAwesomeIcon icon={faHeart} />
               )}
               {post?.likes?.likeCount > 0 && (
                 <span>{post?.likes?.likeCount}</span>
