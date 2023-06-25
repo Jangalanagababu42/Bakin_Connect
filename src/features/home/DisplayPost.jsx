@@ -10,9 +10,12 @@ import React, { useEffect, useState } from "react";
 import { useUser } from "../../contexts/UserContext";
 import { useAuth } from "../../contexts/AuthContext";
 import { usePost } from "../../contexts/PostContext";
+import { useNavigate } from "react-router-dom";
 
 function DisplayPost({ post, index }) {
+  console.log(post, "post");
   const [userDetails, setUserDetails] = useState(null);
+  const navigate = useNavigate();
   const {
     addBookmarkHandler,
     removePostFromBookmarkHandler,
@@ -61,11 +64,15 @@ function DisplayPost({ post, index }) {
                   ? authUser?.avatarUrl
                   : userDetails.avatarUrl
               }
+              onClick={() => navigate(`/profile/${userDetails.username}`)}
               // src="https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png"
               alt="pic"
             />
             <div className="flex justify-between flex-grow">
-              <div className="flex flex-col">
+              <div
+                className="flex flex-col"
+                onClick={() => navigate(`/profile/${userDetails.username}`)}
+              >
                 <p className="text-xl cursor-pointer">
                   {" "}
                   {userDetails.firstName} {userDetails.lastName}
@@ -112,6 +119,7 @@ function DisplayPost({ post, index }) {
               ) : (
                 <FontAwesomeIcon icon={faHeart} />
               )}
+
               {post?.likes?.likeCount > 0 && (
                 <span>{post?.likes?.likeCount}</span>
               )}

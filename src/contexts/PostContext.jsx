@@ -88,6 +88,7 @@ function PostProvider({ children }) {
     } = response;
 
     postDispatch({ type: POST_ACTIONS.like, payload: { posts: posts } });
+    // setAuthUser((prev) => ({ ...prev, bookmarks: bookmarks }));
   };
   const DisLikeHandler = async (postId) => {
     const response = await DislikeService(authToken, postId);
