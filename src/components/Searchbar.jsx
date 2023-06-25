@@ -43,10 +43,10 @@ function Searchbar() {
         onChange={(e) => setSearchInput(e.target.value)}
         value={searchInput}
         placeholder="Search for User......"
-        className=" border-solid border-2 border-primary rounded-2xl p-2 outline-none text-center"
+        className=" border-solid border-2 border-primary rounded-2xl py-2 px-8 outline-none text-center"
       />
       {showUser && (
-        <div className="flex w-full flex-col gap-4   max-h-96 z-50 overflow-y-auto rounded-lg   bg-white dark:bg-dark-background'">
+        <div className="flex w-full flex-col gap-4   max-h-96 z-50 overflow-y-auto rounded-lg   bg-white ">
           {searchInput !== "" && searchResult.length === 0 ? (
             <p className="text-center text-lg m-1 font-medium  ">
               No user to show
