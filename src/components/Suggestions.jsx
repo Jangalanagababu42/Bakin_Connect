@@ -10,7 +10,7 @@ function Suggestions() {
   const { authUser } = useAuth();
   const suggestedUsers = users.filter(
     (outeruser) =>
-      !authUser.following.find(
+      !authUser?.following?.find(
         (user) => outeruser.username === user.username
       ) && outeruser.username !== authUser?.username
   );

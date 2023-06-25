@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
+import Searchbar from "./Searchbar";
 
 function Navbar() {
   const { authUser } = useAuth();
@@ -29,15 +30,16 @@ function Navbar() {
         </Link>
       </div>
       <div className="flex  justify-center h-8 relative pt-3  ">
-        <input
+        {/* <input
           type="search"
           placeholder="Search for User.."
           className=" border-solid border-2 border-primary rounded-2xl p-4 outline-none"
-        />
-        <FontAwesomeIcon
+        /> */}
+        {/* <FontAwesomeIcon
           icon={faMagnifyingGlass}
           className="absolute top-2 right-2 flex justify-center pt-3 "
-        />
+        /> */}
+        <Searchbar />
       </div>
       <div className="flex flex-row  gap-8 ">
         <div className="flex relative">

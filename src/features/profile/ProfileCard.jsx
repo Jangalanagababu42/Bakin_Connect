@@ -7,7 +7,7 @@ function ProfileCard({ profile }) {
   const { authUser, setAuthToken, setAuthUser } = useAuth();
   const { followHandler, unFollowHandler } = usePost();
   const isFollowing = () =>
-    authUser.following.filter((user) => user.username === profile.username)
+    authUser?.following?.filter((user) => user.username === profile.username)
       .length !== 0;
   const navigate = useNavigate();
   const LogoutHandler = () => {
