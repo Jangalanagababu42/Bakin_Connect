@@ -38,9 +38,9 @@ function Profile() {
             <>
               <ProfileCard profile={userProfile} key={userProfile._id} />
               {userPosts &&
-                userPosts.map((post) => (
-                  <DisplayPost post={post} key={post._id} />
-                ))}
+                [...userPosts]
+                  .reverse()
+                  .map((post) => <DisplayPost post={post} key={post._id} />)}
               <>
                 {userPosts.length === 0 && (
                   <div className=" px-5 w-full  rounded-lg shadow-2xl">

@@ -8,6 +8,7 @@ module.exports = {
       offwhite: "#e2e8f0",
       gray: " #6b7280",
       red: "#dc2626",
+      pink: "rgb(249 168 212)",
     },
     extend: {},
   },
