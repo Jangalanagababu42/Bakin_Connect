@@ -34,6 +34,11 @@ export const DislikeService = (token, postId) => {
   const config = { headers: { authorization: `${token}` } };
   return axios.post(`/api/posts/dislike/${postId}`, {}, config);
 };
+export const DeleteService = (token, postId) => {
+  console.log(token, "token");
+  const config = { headers: { authorization: `${token}` } };
+  return axios.delete(`/api/posts/${postId}`, config);
+};
 export const FollowService = (token, followId) => {
   const config = { headers: { authorization: `${token}` } };
   return axios.post(`/api/users/follow/${followId}`, {}, config);

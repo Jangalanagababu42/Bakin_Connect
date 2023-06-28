@@ -6,6 +6,7 @@ export const POST_ACTIONS = {
   removebookmark: "remove_bookmark",
   like: "like",
   dislike: "dislike",
+  delete: "delete",
 };
 
 export const initialPostState = {
@@ -29,7 +30,9 @@ export function PostReducer(state, action) {
       return { ...state, posts: action.payload.posts };
     case POST_ACTIONS.dislike:
       return { ...state, posts: action.payload.posts };
+    case POST_ACTIONS.delete:
+      return { ...state, posts: action.payload.posts };
     default:
-      break;
+      return state;
   }
 }

@@ -4,8 +4,10 @@ import { useUser } from "../contexts/UserContext";
 import { useAuth } from "../contexts/AuthContext";
 import { BsClock, BsFire } from "react-icons/bs";
 import { useLocation } from "react-router-dom";
+import { usePost } from "../contexts/PostContext";
 
 function Suggestions() {
+  const { clickedSort, setClickedSort } = usePost();
   const location = useLocation();
 
   const {
@@ -18,7 +20,6 @@ function Suggestions() {
         (user) => outeruser.username === user.username
       ) && outeruser.username !== authUser?.username
   );
-  const [clickedSort, setClickedSort] = useState("latest");
   console.log(authUser);
   console.log(suggestedUsers, "suggestedUsers");
 

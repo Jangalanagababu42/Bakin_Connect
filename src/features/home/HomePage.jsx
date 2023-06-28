@@ -7,9 +7,11 @@ import { useAuth } from "../../contexts/AuthContext";
 
 function HomePage() {
   const {
+    clickedSort,
     postState: { posts },
   } = usePost();
-  const [followingPosts, setFollowingPosts] = useState();
+
+  const [followingPosts, setFollowingPosts] = useState([]);
   const { authUser } = useAuth();
 
   useEffect(() => {
@@ -21,15 +23,31 @@ function HomePage() {
     );
     setFollowingPosts(filterposts);
   }, [authUser, posts]);
+  const sortedposts =
+    clickedSort === "trending"
+      ? [
+          ...followingPosts.filter(
+            (post) => post.likes?.likeCount > 0 || post.comments?.length > 0
+          ),
+        ].sort(
+          (a, b) =>
+            b?.likes?.likeCount +
+            b?.comments?.length -
+            (a?.likes?.likeCount + a?.comments?.length)
+          //  || b.comments.length - a.comments.length
+        )
+      : [...followingPosts].sort(
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+        );
 
   return (
     <div className="flex flex-col  justify-items-center w-3/5	gap-4">
       <CreatePost />
 
-      {followingPosts &&
-        [...followingPosts]
-          .reverse()
-          .map((post) => <DisplayPost post={post} key={post?._id} />)}
+      {sortedposts &&
+        sortedposts.map((post) => (
+          <DisplayPost post={post} key={post?._id} individualpage={false} />
+        ))}
     </div>
   );
 }

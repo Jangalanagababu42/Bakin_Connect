@@ -24,7 +24,6 @@ function ProfileCard({ profile }) {
     <div className="flex justify-around w-full items-center gap-4 rounded-lg shadow-2xl p-5">
       <img
         src={profile.avatarUrl}
-        // src="https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png"
         alt=""
         className="h-48 object-cover w-48 sm:h-28 sm:w-28 rounded-full "
       />

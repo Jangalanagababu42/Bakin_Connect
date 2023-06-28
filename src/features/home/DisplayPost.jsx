@@ -1,19 +1,24 @@
 import {
   faBookmark,
-  faComment,
   faEllipsis,
-  faHeart,
-  faShareNodes,
+  faTrashCan,
 } from "@fortawesome/free-solid-svg-icons";
+import { CiHeart } from "react-icons/ci";
+import { FcLike } from "react-icons/fc";
+import { BsBookmark, BsShare } from "react-icons/bs";
+import { FaRegComment } from "react-icons/fa";
+import { LiaEdit } from "react-icons/lia";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import { useUser } from "../../contexts/UserContext";
 import { useAuth } from "../../contexts/AuthContext";
 import { usePost } from "../../contexts/PostContext";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
-function DisplayPost({ post, index }) {
+function DisplayPost({ post, index, individualpage }) {
   console.log(post, "post");
+  const [openMenu, setOpenMenu] = useState(false);
   const [userDetails, setUserDetails] = useState(null);
   const navigate = useNavigate();
   const {
@@ -21,6 +26,7 @@ function DisplayPost({ post, index }) {
     removePostFromBookmarkHandler,
     DisLikeHandler,
     LikeHandler,
+    DeletePostHandler,
   } = usePost();
   const {
     userState: { users },
@@ -59,13 +65,8 @@ function DisplayPost({ post, index }) {
           <div className="flex gap-4 flex-grow">
             <img
               className="rounded-full cursor-pointer w-14 h-14 object-cover"
-              src={
-                userDetails.username === authUser?.username
-                  ? authUser?.avatarUrl
-                  : userDetails.avatarUrl
-              }
+              src={userDetails.avatarUrl}
               onClick={() => navigate(`/profile/${userDetails.username}`)}
-              // src="https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png"
               alt="pic"
             />
             <div className="flex justify-between flex-grow">
@@ -87,21 +88,55 @@ function DisplayPost({ post, index }) {
                     .join(" ")}`}
                 </p>
               </div>
-              <div className="relative">
+              <div className="relative cursor-pointer">
                 {userDetails.username === authUser?.username && (
                   <FontAwesomeIcon
                     className="absolute right-0"
                     icon={faEllipsis}
+                    onClick={() => setOpenMenu(!openMenu)}
                   />
+                )}
+                {openMenu && (
+                  <div className="absolute right-0 top-5  ">
+                    <div className=" w-40 flex flex-col items-start rounded-md p-2 bg-bgpink">
+                      <button
+                        className="flex flex-row items-baseline p-2  hover:text-blue"
+                        onClick={() => {
+                          setOpenMenu(false);
+                        }}
+                      >
+                        <LiaEdit className="mr-1" />
+                        Edit
+                      </button>
+                      <button
+                        className="flex flex-row items-baseline p-2 hover:text-red"
+                        onClick={() => {
+                          DeletePostHandler(post._id);
+                          setOpenMenu(false);
+                          if (individualpage) navigate("/");
+                        }}
+                      >
+                        {" "}
+                        <FontAwesomeIcon
+                          icon={faTrashCan}
+                          style={{ color: "#f41515" }}
+                          className="mr-1"
+                        />
+                        Delete
+                      </button>
+                    </div>
+                  </div>
                 )}
               </div>
             </div>
           </div>
-          <div className="cursor-pointer flex flex-col gap-6 flex-grow">
+          <div
+            className="cursor-pointer flex flex-col gap-6 flex-grow"
+            onClick={() => navigate(`/post/${post._id}`)}
+          >
             <p className="px-4">{post?.content}</p>
             {post.mediaURL && (
               <img
-                // src="https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png"
                 src={post.mediaURL}
                 alt="logo"
                 className="rounded-lg max-h-80 w-full object-contain"
@@ -115,9 +150,10 @@ function DisplayPost({ post, index }) {
               onClick={(e) => likeClickHandler()}
             >
               {likedByUser() ? (
-                <FontAwesomeIcon icon={faHeart} style={{ color: "red" }} />
+                // <FontAwesomeIcon icon={faHeart} style={{ color: "red" }} />
+                <FcLike className=" text-2xl" />
               ) : (
-                <FontAwesomeIcon icon={faHeart} />
+                <CiHeart className=" text-2xl" />
               )}
 
               {post?.likes?.likeCount > 0 && (
@@ -131,16 +167,20 @@ function DisplayPost({ post, index }) {
               {bookmarkedByUser() ? (
                 <FontAwesomeIcon icon={faBookmark} style={{ color: "black" }} />
               ) : (
-                <FontAwesomeIcon icon={faBookmark} style={{ color: "grey" }} />
+                <BsBookmark />
               )}
             </div>
-            <div className="flex items-center gap-1 cursor-pointer">
-              <FontAwesomeIcon icon={faComment} />
+            <div
+              className="flex items-center gap-1 cursor-pointer"
+              onClick={() => !individualpage && navigate(`/post/${post._id}`)}
+            >
+              <FaRegComment />
             </div>
             <div className="flex items-center gap-1 cursor-pointer">
-              <FontAwesomeIcon icon={faShareNodes} />
+              <BsShare />
             </div>
           </div>
+          {individualpage && <div>Hello comments</div>}
         </div>
       )}
     </>

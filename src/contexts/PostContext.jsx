@@ -1,7 +1,14 @@
-import React, { createContext, useContext, useEffect, useReducer } from "react";
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 import {
   AddBookMarkService,
   AddPostService,
+  DeleteService,
   DislikeService,
   FollowService,
   LikeService,
@@ -16,13 +23,15 @@ import {
   initialPostState,
 } from "../reducers/PostReducer";
 import { useAuth } from "./AuthContext";
+import { useUser } from "./UserContext";
 
 const PostContext = createContext();
 
 function PostProvider({ children }) {
   const { authToken, authUser, setAuthUser } = useAuth();
-  const [postState, postDispatch] = useReducer(PostReducer, initialPostState);
 
+  const [postState, postDispatch] = useReducer(PostReducer, initialPostState);
+  const [clickedSort, setClickedSort] = useState("latest");
   const getAllPosts = async () => {
     const response = await PostService();
     const {
@@ -99,6 +108,17 @@ function PostProvider({ children }) {
 
     postDispatch({ type: POST_ACTIONS.dislike, payload: { posts: posts } });
   };
+
+  const DeletePostHandler = async (postId) => {
+    const response = await DeleteService(authToken, postId);
+
+    const {
+      data: { posts },
+    } = response;
+
+    postDispatch({ type: POST_ACTIONS.delete, payload: { posts: posts } });
+  };
+
   const followHandler = async (followuserId) => {
     const response = await FollowService(authToken, followuserId);
     console.log(response);
@@ -135,6 +155,9 @@ function PostProvider({ children }) {
         DisLikeHandler,
         followHandler,
         unFollowHandler,
+        clickedSort,
+        setClickedSort,
+        DeletePostHandler,
       }}
     >
       {children}
