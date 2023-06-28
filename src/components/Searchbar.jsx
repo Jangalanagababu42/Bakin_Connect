@@ -46,7 +46,7 @@ function Searchbar() {
         className=" border-solid border-2 border-primary rounded-2xl py-2 px-8 outline-none text-center"
       />
       {showUser && (
-        <div className="flex w-full flex-col gap-4   max-h-96 z-50 overflow-y-auto rounded-lg   bg-white ">
+        <div className="flex w-full flex-col gap-4   max-h-96 z-50 overflow-y-visible rounded-lg   bg-white 		">
           {searchInput !== "" && searchResult.length === 0 ? (
             <p className="text-center text-lg m-1 font-medium  ">
               No user to show
@@ -61,7 +61,7 @@ function Searchbar() {
                     setShowUser(false);
                     setSearchInput("");
                   }}
-                  className="px-4 pt-3 last-of-type:pb-3 cursor-pointer  flex gap-4 items-center"
+                  className="px-4 pt-3 last-of-type:pb-3 cursor-pointer  flex gap-4 items-center bg-white"
                 >
                   <img
                     className="w-14  h-14 object-cover rounded-full"

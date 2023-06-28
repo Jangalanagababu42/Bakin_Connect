@@ -5,11 +5,13 @@ import {
   UserReducer,
   initialUserState,
 } from "../reducers/UserReducer";
+import { useAuth } from "./AuthContext";
 
 const UserContext = createContext();
 
 function UserProvider({ children }) {
   const [userState, userDispatch] = useReducer(UserReducer, initialUserState);
+  const { authUser } = useAuth();
   const getAllUsers = async () => {
     const response = await UserService();
     const {
@@ -21,9 +23,12 @@ function UserProvider({ children }) {
   useEffect(() => {
     getAllUsers();
   }, []);
-
+  const filterAuthUser = userState?.users?.find(
+    (curruser) => curruser.username === authUser?.username
+  );
+  console.log(filterAuthUser, "filterAuthUser");
   return (
-    <UserContext.Provider value={{ userState }}>
+    <UserContext.Provider value={{ userState, userDispatch, filterAuthUser }}>
       {children}
     </UserContext.Provider>
   );

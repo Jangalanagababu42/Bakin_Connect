@@ -2,13 +2,14 @@ import { faFaceSmile, faImage } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { usePost } from "../../contexts/PostContext";
-import { useAuth } from "../../contexts/AuthContext";
+import { useUser } from "../../contexts/UserContext";
 
 function CreatePost() {
   const [content, setContent] = useState("");
   const { addPostHandler } = usePost();
+  const { filterAuthUser } = useUser();
   const [disable, setDisable] = useState(true);
-  const { authUser } = useAuth();
+
   const handlePost = (e) => {
     setContent(e.target.value);
     if (content !== "") {
@@ -31,11 +32,7 @@ function CreatePost() {
       <div className=" flex flex-row">
         <img
           className="  h-14 w-14 rounded-full object-cover m-2"
-          src={
-            authUser.avatarUrl
-              ? authUser.avatarUrl
-              : `https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png`
-          }
+          src={filterAuthUser?.avatarUrl}
           alt="avatar"
         />
         <textarea

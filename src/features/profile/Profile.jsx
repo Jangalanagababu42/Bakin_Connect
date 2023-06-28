@@ -17,6 +17,7 @@ function Profile() {
   const {
     userState: { users },
   } = useUser();
+  console.log(users, "users ");
   useEffect(() => {
     if (username) {
       const filteredProfile = users.filter(
@@ -32,7 +33,8 @@ function Profile() {
   return (
     <main className="p-2 mt-4">
       <div className="flex justify-center">
-        <div className="flex flex-col w-2/5 xl:3/5 lg:w-4/5 md:4/5 sm:w-full  gap-4">
+        <div className="flex flex-col  justify-items-center w-4/6	gap-4">
+          {/* <div className="flex flex-col w-2/5 xl:3/5 lg:w-4/5 md:4/5 sm:w-full  gap-4"> */}
           {/* xl:3/5 lg:w-4/5 md:4/5 sm:w-full  */}
           {userProfile && (
             <>

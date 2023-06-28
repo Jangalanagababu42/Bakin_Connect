@@ -4,8 +4,13 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import SignupService from "./services/SignupService";
 import { useAuth } from "../../contexts/AuthContext";
+import { useUser } from "../../contexts/UserContext";
+import { USER_ACTIONS } from "../../reducers/UserReducer";
 
 function Signup() {
+  const defaultAvatar =
+    " https://res.cloudinary.com/donqbxlnc/image/upload/v1651664931/avatar-1577909_960_720_cl1ooh.png";
+  const { userDispatch } = useUser();
   const { setAuthToken, setAuthUser } = useAuth();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
@@ -21,15 +26,34 @@ function Signup() {
   const signupHandler = async (e) => {
     e.preventDefault();
     try {
-      const response = await SignupService(signupData);
+      if (
+        signupData.firstName !== "" &&
+        signupData.lastName !== "" &&
+        signupData.email !== "" &&
+        signupData.username !== "" &&
+        signupData.password !== "" &&
+        signupData.cpassword !== ""
+      ) {
+        if (signupData.password === signupData.cpassword) {
+          const response = await SignupService(signupData);
 
-      if (response.status === 201) {
-        const { encodedToken, createdUser } = response.data;
-        localStorage.setItem("authToken", encodedToken);
-        localStorage.setItem("authUser", JSON.stringify(createdUser));
-        setAuthToken(encodedToken);
-        setAuthUser(createdUser);
-        navigate("/");
+          if (response.status === 201) {
+            const { encodedToken, createdUser } = response.data;
+            localStorage.setItem("authToken", encodedToken);
+            localStorage.setItem("authUser", JSON.stringify(createdUser));
+            setAuthToken(encodedToken);
+            setAuthUser(createdUser);
+            navigate("/");
+            userDispatch({
+              type: USER_ACTIONS.adduser,
+              payload: { user: { ...createdUser, avatarUrl: defaultAvatar } },
+            });
+          }
+        } else {
+          alert("Passwords do not match");
+        }
+      } else {
+        alert("Please enter all details");
       }
     } catch (error) {
       console.log(error.response.data.errors[0], "error");

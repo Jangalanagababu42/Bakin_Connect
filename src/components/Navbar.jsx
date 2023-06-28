@@ -4,10 +4,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import Searchbar from "./Searchbar";
+import { useUser } from "../contexts/UserContext";
+import { usePost } from "../contexts/PostContext";
 
 function Navbar() {
-  const { authUser } = useAuth();
-
+  const { filterAuthUser } = useUser();
   return (
     <div className=" flex flex-row w-full h-20   p-3 justify-between  sticky top-0 z-40 shadow-xl bg-white">
       <div
@@ -30,15 +31,6 @@ function Navbar() {
         </Link>
       </div>
       <div className="flex  justify-center h-8 relative pt-3  ">
-        {/* <input
-          type="search"
-          placeholder="Search for User.."
-          className=" border-solid border-2 border-primary rounded-2xl p-4 outline-none"
-        /> */}
-        {/* <FontAwesomeIcon
-          icon={faMagnifyingGlass}
-          className="absolute top-2 right-2 flex justify-center pt-3 "
-        /> */}
         <Searchbar />
       </div>
       <div className="flex flex-row  gap-8 ">
@@ -49,14 +41,10 @@ function Navbar() {
             className=" flex  justify-center absolute top-5 cursor-pointer "
           />
         </div>
-        <Link to={`/profile/${authUser?.username}`}>
+        <Link to={`/profile/${filterAuthUser?.username}`}>
           <img
             className="  h-10 w-10 rounded-full object-cover m-2 "
-            src={
-              authUser?.avatarUrl
-                ? authUser?.avatarUrl
-                : `https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png`
-            }
+            src={filterAuthUser?.avatarUrl}
             alt="avatar"
           />
         </Link>

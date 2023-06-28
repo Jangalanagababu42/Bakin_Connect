@@ -8,6 +8,7 @@ import Login from "./features/authentication/Login";
 import Signup from "./features/authentication/Signup";
 import Profile from "./features/profile/Profile";
 import RequiresAuth from "./components/RequiresAuth";
+import SinglePostPage from "./features/SinglePost/SinglePostPage";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/bookmarks" element={<BookMarkPage />} />
           <Route path="/likedposts" element={<LikesPostPage />} />
           <Route path="/profile/:username" element={<Profile />} />
+          <Route path="/post/:postId" element={<SinglePostPage />} />
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
