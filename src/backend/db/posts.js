@@ -135,6 +135,20 @@ export const posts = [
     updatedAt: formatDate(),
   },
   {
+    _id: "tHaThLyFQq",
+    content: "Party Leda Puspa",
+    mediaURL: "",
+    likes: {
+      likeCount: 2,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    comments: [],
+    username: "adarshbalika",
+    createdAt: "2023-04-06T10:55:06+05:30",
+    updatedAt: formatDate(),
+  },
+  {
     _id: "G-Gi3lSZP9",
     content: "When you have a dream, you’ve got to grab it and never let go.",
     mediaURL: "",

@@ -15,8 +15,11 @@ import { useUser } from "../../contexts/UserContext";
 import { useAuth } from "../../contexts/AuthContext";
 import { usePost } from "../../contexts/PostContext";
 import { useLocation, useNavigate } from "react-router-dom";
+import EditPostModal from "./EditPostModal";
 
 function DisplayPost({ post, index, individualpage }) {
+  const { editopenModal, setEditOpenModal } = usePost();
+  console.log(editopenModal, setEditOpenModal, "setEditOpenModal ");
   console.log(post, "post");
   const [openMenu, setOpenMenu] = useState(false);
   const [userDetails, setUserDetails] = useState(null);
@@ -93,7 +96,7 @@ function DisplayPost({ post, index, individualpage }) {
                   <FontAwesomeIcon
                     className="absolute right-0"
                     icon={faEllipsis}
-                    onClick={() => setOpenMenu(!openMenu)}
+                    onClick={() => setOpenMenu(true)}
                   />
                 )}
                 {openMenu && (
@@ -102,9 +105,12 @@ function DisplayPost({ post, index, individualpage }) {
                       <button
                         className="flex flex-row items-baseline p-2  hover:text-blue"
                         onClick={() => {
-                          setOpenMenu(false);
+                          setEditOpenModal(true);
+                          // setOpenMenu(false);
+                          console.log("onclick, true");
                         }}
                       >
+                        {editopenModal && <EditPostModal editpost={post} />}
                         <LiaEdit className="mr-1" />
                         Edit
                       </button>

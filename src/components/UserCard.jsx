@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { usePost } from "../contexts/PostContext";
+import { useUser } from "../contexts/UserContext";
 
 function UserCard({ user }) {
-  const { followHandler } = usePost();
+  const { followHandler } = useUser();
 
   return (
     <div className="flex flex-row relative  ">

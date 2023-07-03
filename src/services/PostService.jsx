@@ -10,6 +10,12 @@ export const AddPostService = (token, content, id) => {
   return axios.post(`/api/posts`, body, config);
 };
 
+export const EditPostService = (token, content, postId, id) => {
+  const body = { postData: { content, userId: id } };
+  const config = { headers: { authorization: `${token}` } };
+  return axios.post(`/api/posts/edit/${postId}`, body, config);
+};
+
 export const getAllBookMarksService = (token) => {
   const config = { headers: { authorization: `${token}` } };
   return axios.get(`/api/users/bookmark`, config);

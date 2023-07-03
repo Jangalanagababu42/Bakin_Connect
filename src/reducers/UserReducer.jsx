@@ -1,6 +1,8 @@
 export const USER_ACTIONS = {
   getusers: "get_users",
   adduser: "add_users",
+  edituser: "edituser",
+  updateusers: "updateusers",
 };
 
 export const initialUserState = {
@@ -8,7 +10,7 @@ export const initialUserState = {
 };
 
 export function UserReducer(state, action) {
-  console.log(action.type, "action");
+  console.log(action.payload, "action");
   switch (action.type) {
     case USER_ACTIONS.getusers:
       return { ...state, users: action.payload };
@@ -18,8 +20,16 @@ export function UserReducer(state, action) {
         ...state,
         users: [...state.users, action.payload.user],
       };
+    case USER_ACTIONS.edituser:
+      const updatedUsers = state.users.map((user) =>
+        user._id === action.payload._id ? (user = action.payload) : user
+      );
+      return {
+        ...state,
+        users: updatedUsers,
+      };
     default:
-      break;
+      return state;
   }
 }
 // ...productState,

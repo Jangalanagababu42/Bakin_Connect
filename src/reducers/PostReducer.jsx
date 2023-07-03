@@ -7,6 +7,7 @@ export const POST_ACTIONS = {
   like: "like",
   dislike: "dislike",
   delete: "delete",
+  editpost: "editpost",
 };
 
 export const initialPostState = {
@@ -19,6 +20,8 @@ export function PostReducer(state, action) {
     case POST_ACTIONS.getposts:
       return { ...state, posts: action.payload.posts };
     case POST_ACTIONS.addpost:
+      return { ...state, posts: action.payload.posts };
+    case POST_ACTIONS.editpost:
       return { ...state, posts: action.payload.posts };
     case POST_ACTIONS.getbookmarks:
       return { ...state, bookmarks: action.payload.bookmarks };

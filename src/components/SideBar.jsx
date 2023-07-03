@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import PostModal from "../features/home/PostModal";
+import { usePost } from "../contexts/PostContext";
 
 const ActiveStyle = ({ isActive }) =>
   isActive
@@ -20,7 +21,7 @@ const getNavItem = (iconName, text) => (
   </div>
 );
 function SideBar() {
-  const [openModal, setOpenModal] = useState(false);
+  const { openModal, setOpenModal } = usePost();
   return (
     <div className="grid col-span-2 bg-slate-200 h-screen ">
       <div className="ml-5  ">

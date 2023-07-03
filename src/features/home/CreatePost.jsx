@@ -4,9 +4,11 @@ import React, { useState } from "react";
 import { usePost } from "../../contexts/PostContext";
 import { useUser } from "../../contexts/UserContext";
 
-function CreatePost() {
-  const [content, setContent] = useState("");
-  const { addPostHandler } = usePost();
+function CreatePost({ editpost }) {
+  const { setOpenModal, setEditOpenModal } = usePost();
+  console.log(editpost, "editpost");
+  const [content, setContent] = useState(editpost ? editpost.content : "");
+  const { addPostHandler, editPostHandler } = usePost();
   const { filterAuthUser } = useUser();
   const [disable, setDisable] = useState(true);
 
@@ -18,9 +20,16 @@ function CreatePost() {
   };
   const addPost = (e) => {
     e.preventDefault();
-
     if (content !== "" && content.length > 0) {
-      addPostHandler(content);
+      if (editpost) {
+        editPostHandler(content, editpost._id);
+
+        e.stopPropagation();
+        setEditOpenModal(false);
+      } else {
+        addPostHandler(content);
+        setOpenModal(false);
+      }
       setContent("");
     } else {
       alert("Please enter a post");
@@ -59,7 +68,7 @@ function CreatePost() {
           onClick={(e) => addPost(e)}
           disabled={disable}
         >
-          post
+          {editpost ? "Update" : "Post"}
         </button>
       </ul>
     </div>

@@ -10,6 +10,7 @@ import {
   AddPostService,
   DeleteService,
   DislikeService,
+  EditPostService,
   FollowService,
   LikeService,
   PostService,
@@ -29,6 +30,10 @@ const PostContext = createContext();
 
 function PostProvider({ children }) {
   const { authToken, authUser, setAuthUser } = useAuth();
+  const [openModal, setOpenModal] = useState(false);
+  const [editopenModal, setEditOpenModal] = useState(false);
+
+  console.log(editopenModal, "editopenModal");
 
   const [postState, postDispatch] = useReducer(PostReducer, initialPostState);
   const [clickedSort, setClickedSort] = useState("latest");
@@ -47,6 +52,19 @@ function PostProvider({ children }) {
       data: { posts },
     } = response;
     postDispatch({ type: POST_ACTIONS.addpost, payload: { posts: posts } });
+  };
+  const editPostHandler = async (content, postId) => {
+    const response = await EditPostService(
+      authToken,
+      content,
+      postId,
+      authUser._id
+    );
+
+    const {
+      data: { posts },
+    } = response;
+    postDispatch({ type: POST_ACTIONS.editpost, payload: { posts: posts } });
   };
   const getAllBookMarks = async () => {
     const response = await getAllBookMarksService(authToken);
@@ -119,24 +137,6 @@ function PostProvider({ children }) {
     postDispatch({ type: POST_ACTIONS.delete, payload: { posts: posts } });
   };
 
-  const followHandler = async (followuserId) => {
-    const response = await FollowService(authToken, followuserId);
-    console.log(response);
-    const {
-      data: { followUser, user },
-    } = response;
-    console.log(followUser, "followUser");
-    setAuthUser(user);
-  };
-  const unFollowHandler = async (followuserId) => {
-    const response = await UnFollowService(authToken, followuserId);
-    console.log(response);
-    const {
-      data: { followUser, user },
-    } = response;
-    console.log(followUser, "followUser");
-    setAuthUser(user);
-  };
   console.log(authUser, "auth");
   useEffect(() => {
     getAllPosts();
@@ -153,11 +153,15 @@ function PostProvider({ children }) {
         removePostFromBookmarkHandler,
         LikeHandler,
         DisLikeHandler,
-        followHandler,
-        unFollowHandler,
+
         clickedSort,
         setClickedSort,
         DeletePostHandler,
+        editPostHandler,
+        openModal,
+        setOpenModal,
+        editopenModal,
+        setEditOpenModal,
       }}
     >
       {children}

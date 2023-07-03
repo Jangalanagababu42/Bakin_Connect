@@ -3,9 +3,23 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import { usePost } from "../../contexts/PostContext";
 
+import EditProfileModal from "./EditProfileModal";
+import { useUser } from "../../contexts/UserContext";
+import FollowingModal from "./FollowingModal";
+import FollowersModal from "./FollowersModal";
+
 function ProfileCard({ profile }) {
   const { authUser, setAuthToken, setAuthUser } = useAuth();
-  const { followHandler, unFollowHandler } = usePost();
+  const {
+    followHandler,
+    unFollowHandler,
+    profileModal,
+    setprofileModal,
+    followingModal,
+    setFollowingModal,
+    followerModal,
+    setFollowerModal,
+  } = useUser();
   const isFollowing = () =>
     authUser?.following?.filter((user) => user.username === profile.username)
       .length !== 0;
@@ -36,7 +50,9 @@ function ProfileCard({ profile }) {
             <button
               className="py-1 px-2 ring-1 rounded-md text-sm sm:text-xs
           "
+              onClick={() => setprofileModal(true)}
             >
+              {profileModal && <EditProfileModal profile={profile} />}
               Edit Profile
             </button>
           ) : isFollowing() ? (
@@ -56,17 +72,39 @@ function ProfileCard({ profile }) {
           )}
         </div>
         <div className="flex gap-1 text-sm sm:text-xs">
-          <p>@ {profile.username}</p>
+          <p>@{profile.username}</p>
+        </div>
+        <div className="flex gap-1 text-sm sm:text-xs">
+          <p>{profile.bio}</p>
         </div>
         <div className="flex gap-2 text-sm sm:text-xs">
-          <Link className="text-blue no-underline" target="_blank">
-            {profile.bio}
+          <Link className="text-primary no-underline" target="_blank">
+            {profile.website}
           </Link>
         </div>
         <div className="flex gap-2 justify-between text-base sm:text-sm ">
           <p className="cursor-pointer">6 posts</p>
-          <p className="cursor-pointer">{profile.following.length} following</p>
-          <p className="cursor-pointer">{profile.followers.length} followers</p>
+          <p
+            className="cursor-pointer"
+            onClick={(e) => setFollowingModal(true)}
+          >
+            {checkLoggedInUser(authUser, profile)
+              ? authUser.following.length
+              : profile.following.length}{" "}
+            following
+            {followingModal && (
+              <FollowingModal followingData={profile.following} />
+            )}
+          </p>
+          <p className="cursor-pointer" onClick={(e) => setFollowerModal(true)}>
+            {checkLoggedInUser(authUser, profile)
+              ? authUser.followers.length
+              : profile.followers.length}{" "}
+            followers
+            {followerModal && (
+              <FollowersModal followerData={profile.followers} />
+            )}
+          </p>
         </div>
       </div>
       {checkLoggedInUser(authUser, profile) && (
