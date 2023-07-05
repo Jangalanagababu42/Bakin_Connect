@@ -63,6 +63,9 @@ function UserProvider({ children }) {
   useEffect(() => {
     getAllUsers();
   }, []);
+  console.log(userState.users, "checkuser1");
+  console.log(authUser, "checkuser2");
+
   const filterAuthUser = userState?.users?.find(
     (curruser) => curruser.username === authUser?.username
   );

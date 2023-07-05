@@ -11,7 +11,7 @@ export const users = [
     bookmarks: [],
     avatarUrl:
       "https://res.cloudinary.com/dtrjdcrme/image/upload/v1651473734/socialmedia/avatars/adarsh-balika_dct6gm.webp",
-    website: "https://romabulani.netlify.app/",
+    website: "https://adarshbalika.netlify.app/",
     createdAt: "2023-01-01T10:55:06+05:30",
     updatedAt: formatDate(),
   },
@@ -39,7 +39,7 @@ export const users = [
     bookmarks: [],
     avatarUrl:
       "https://res.cloudinary.com/dtrjdcrme/image/upload/v1651554256/socialmedia/avatars/jane-doe_il3cvx.webp",
-    website: "https://romabulani.netlify.app/",
+    website: "https://yahoo.com/",
     createdAt: "2023-01-01T10:55:06+05:30",
     updatedAt: formatDate(),
   },
@@ -52,7 +52,7 @@ export const users = [
     bio: "Whats in bio?",
     avatarUrl:
       "https://res.cloudinary.com/dtrjdcrme/image/upload/v1651563581/socialmedia/avatars/carl-smith_mehw0u.webp",
-    website: "https://romabulani.netlify.app/",
+    website: "https://twitter.com/",
     createdAt: "2023-01-03T10:55:06+05:30",
     updatedAt: formatDate(),
   },
@@ -67,7 +67,7 @@ export const users = [
     bookmarks: [],
     avatarUrl:
       "https://res.cloudinary.com/dzy0bigtz/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max,bo_5px_solid_red,b_rgb:262c35/v1686844947/dp_galgq7.jpg",
-    website: "https://romabulani.hashnode.dev/",
+    website: "https://jangalanagababu-portfolio.vercel.app/",
     createdAt: "2023-01-04T10:55:06+05:30",
     updatedAt: formatDate(),
   },

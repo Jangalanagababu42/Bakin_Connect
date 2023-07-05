@@ -13,6 +13,7 @@ function Profile() {
   const [userProfile, setUserProfile] = useState();
   const [userPosts, setUserPosts] = useState();
   const { username } = useParams();
+  console.log(username, "username ");
   console.log(userProfile, "userprofile");
   const {
     userState: { users },
@@ -38,7 +39,11 @@ function Profile() {
           {/* xl:3/5 lg:w-4/5 md:4/5 sm:w-full  */}
           {userProfile && (
             <>
-              <ProfileCard profile={userProfile} key={userProfile._id} />
+              <ProfileCard
+                profile={userProfile}
+                key={userProfile._id}
+                totalposts={userPosts.length}
+              />
               {userPosts &&
                 [...userPosts]
                   .reverse()

@@ -8,7 +8,8 @@ import { useUser } from "../../contexts/UserContext";
 import FollowingModal from "./FollowingModal";
 import FollowersModal from "./FollowersModal";
 
-function ProfileCard({ profile }) {
+function ProfileCard({ profile, totalposts }) {
+  console.log(profile, "profiles");
   const { authUser, setAuthToken, setAuthUser } = useAuth();
   const {
     followHandler,
@@ -83,7 +84,7 @@ function ProfileCard({ profile }) {
           </Link>
         </div>
         <div className="flex gap-2 justify-between text-base sm:text-sm ">
-          <p className="cursor-pointer">6 posts</p>
+          <p className="cursor-pointer">{totalposts} posts</p>
           <p
             className="cursor-pointer"
             onClick={(e) => setFollowingModal(true)}
