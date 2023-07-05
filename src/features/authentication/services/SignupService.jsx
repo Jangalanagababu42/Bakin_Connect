@@ -6,6 +6,7 @@ function SignupService(signupData) {
     password: signupData.password,
     firstName: signupData.firstName,
     lastName: signupData.lastName,
+    avatarUrl: signupData.avatarUrl,
   });
 }
 

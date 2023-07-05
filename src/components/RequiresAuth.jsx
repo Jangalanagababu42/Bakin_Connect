@@ -1,10 +1,10 @@
 import { Navigate, useLocation } from "react-router-dom";
+import { useUser } from "../contexts/UserContext";
 
 export default function RequiresAuth({ children }) {
-  const isLoggedIn = localStorage.getItem("authUser");
-
+  const { filterAuthUser } = useUser();
   const location = useLocation();
-  return isLoggedIn ? (
+  return filterAuthUser ? (
     children
   ) : (
     <Navigate to="/login" state={{ from: location }} />

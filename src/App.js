@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import RootLayout from "./components/RootLayout";
 import HomePage from "./features/home/HomePage";
 import ExplorePage from "./features/explore/ExplorePage";
@@ -9,6 +9,7 @@ import Signup from "./features/authentication/Signup";
 import Profile from "./features/profile/Profile";
 import RequiresAuth from "./components/RequiresAuth";
 import SinglePostPage from "./features/SinglePost/SinglePostPage";
+import { useUser } from "./contexts/UserContext";
 
 function App() {
   return (
@@ -29,8 +30,9 @@ function App() {
           <Route path="/profile/:username" element={<Profile />} />
           <Route path="/post/:postId" element={<SinglePostPage />} />
         </Route>
-        <Route path="/login" element={<Login />} />
+
         <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </main>
   );

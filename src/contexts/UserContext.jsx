@@ -44,6 +44,7 @@ function UserProvider({ children }) {
       data: { followUser, user },
     } = response;
     console.log(followUser, "followUser");
+    console.log(user, "userafterfollow");
     userDispatch({ type: USER_ACTIONS.edituser, payload: followUser });
     userDispatch({ type: USER_ACTIONS.edituser, payload: user });
     setAuthUser(user);

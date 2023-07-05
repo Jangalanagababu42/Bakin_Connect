@@ -16,6 +16,7 @@ function Signup() {
   const [showPassword, setShowPassword] = useState(false);
   const [showcPassword, setShowcPassword] = useState(false);
   const [signupData, setSignupData] = useState({
+    avatarUrl: defaultAvatar,
     firstName: "",
     lastName: "",
     email: "",
