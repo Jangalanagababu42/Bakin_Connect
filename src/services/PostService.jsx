@@ -41,7 +41,6 @@ export const DislikeService = (token, postId) => {
   return axios.post(`/api/posts/dislike/${postId}`, {}, config);
 };
 export const DeleteService = (token, postId) => {
-  console.log(token, "token");
   const config = { headers: { authorization: `${token}` } };
   return axios.delete(`/api/posts/${postId}`, config);
 };

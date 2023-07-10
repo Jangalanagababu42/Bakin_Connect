@@ -10,12 +10,10 @@ export const initialUserState = {
 };
 
 export function UserReducer(state, action) {
-  console.log(action.payload, "action");
   switch (action.type) {
     case USER_ACTIONS.getusers:
       return { ...state, users: action.payload };
     case USER_ACTIONS.adduser:
-      console.log(action.payload, "action.payload");
       return {
         ...state,
         users: [...state.users, action.payload.user],

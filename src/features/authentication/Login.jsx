@@ -32,7 +32,6 @@ function Login() {
       }
     } catch (error) {
       toast.error(error.response.data.errors[0]);
-      console.log(error.response.data.errors[0], "error");
     }
   };
   const GuestModeLogin = async (e) => {

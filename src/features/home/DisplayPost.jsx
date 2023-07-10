@@ -20,8 +20,7 @@ import EditPostModal from "./EditPostModal";
 
 function DisplayPost({ post, index, individualpage }) {
   const { editopenModal, setEditOpenModal } = usePost();
-  console.log(editopenModal, setEditOpenModal, "setEditOpenModal ");
-  console.log(post, "post");
+
   const [openMenu, setOpenMenu] = useState(false);
   const [userDetails, setUserDetails] = useState(null);
   const navigate = useNavigate();
@@ -117,8 +116,6 @@ function DisplayPost({ post, index, individualpage }) {
                         className="flex flex-row items-baseline p-2  hover:text-blue"
                         onClick={() => {
                           setEditOpenModal(true);
-                          // setOpenMenu(false);
-                          console.log("onclick, true");
                         }}
                       >
                         {editopenModal && (

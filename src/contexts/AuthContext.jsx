@@ -12,8 +12,6 @@ function AuthProvider({ children }) {
   const [authUser, setAuthUser] = useState(
     localStorageUser ? JSON.parse(localStorageUser) : null
   );
-  console.log(authToken, "authToken");
-  console.log(authUser, "authUser");
 
   return (
     <AuthContext.Provider

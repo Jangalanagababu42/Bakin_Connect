@@ -34,28 +34,27 @@ function UserProvider({ children }) {
     const {
       data: { user },
     } = response;
-    console.log(user, "edituser");
+
     userDispatch({ type: USER_ACTIONS.edituser, payload: user });
   };
   const followHandler = async (followuserId) => {
     const response = await FollowService(authToken, followuserId);
-    console.log(response);
+
     const {
       data: { followUser, user },
     } = response;
-    console.log(followUser, "followUser");
-    console.log(user, "userafterfollow");
+
     userDispatch({ type: USER_ACTIONS.edituser, payload: followUser });
     userDispatch({ type: USER_ACTIONS.edituser, payload: user });
     setAuthUser(user);
   };
   const unFollowHandler = async (followuserId) => {
     const response = await UnFollowService(authToken, followuserId);
-    console.log(response);
+
     const {
       data: { followUser, user },
     } = response;
-    console.log(followUser, "followUser");
+
     userDispatch({ type: USER_ACTIONS.edituser, payload: followUser });
     userDispatch({ type: USER_ACTIONS.edituser, payload: user });
     setAuthUser(user);
@@ -64,13 +63,11 @@ function UserProvider({ children }) {
   useEffect(() => {
     getAllUsers();
   }, []);
-  console.log(userState.users, "checkuser1");
-  console.log(authUser, "checkuser2");
 
   const filterAuthUser = userState?.users?.find(
     (curruser) => curruser.username === authUser?.username
   );
-  console.log(filterAuthUser, "filterAuthUser");
+
   return (
     <UserContext.Provider
       value={{

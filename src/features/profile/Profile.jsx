@@ -13,12 +13,11 @@ function Profile() {
   const [userProfile, setUserProfile] = useState();
   const [userPosts, setUserPosts] = useState();
   const { username } = useParams();
-  console.log(username, "username ");
-  console.log(userProfile, "userprofile");
+
   const {
     userState: { users },
   } = useUser();
-  console.log(users, "users ");
+
   useEffect(() => {
     if (username) {
       const filteredProfile = users.filter(

@@ -16,7 +16,6 @@ function EditProfileModal({ profile }) {
   const onFileChange = async (e) => {
     const file = e.target.files[0];
 
-    console.log(file, "file");
     const toBase64 = (file) =>
       new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -33,7 +32,7 @@ function EditProfileModal({ profile }) {
     setprofileModal(false);
     toast.success("Updated Successfully");
   };
-  console.log(profile);
+
   return (
     <div className="fixed p-4 left-0 top-0 right-0 h-screen z-50 flex justify-center items-center bg-backgrounddim ">
       <div className="w-2/5 md:w-2/6 sm:w-full flex flex-col bg-white rounded-lg  ">

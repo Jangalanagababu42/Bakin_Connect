@@ -9,7 +9,6 @@ import FollowingModal from "./FollowingModal";
 import FollowersModal from "./FollowersModal";
 import { toast } from "react-toastify";
 function ProfileCard({ profile, totalposts }) {
-  console.log(profile, "profiles");
   const { authUser, setAuthToken, setAuthUser } = useAuth();
   const {
     followHandler,

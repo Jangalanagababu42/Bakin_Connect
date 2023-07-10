@@ -11,7 +11,7 @@ import { useUser } from "../../contexts/UserContext";
 
 function CreatePost({ editpost, setOpenMenu }) {
   const { setOpenModal, setEditOpenModal } = usePost();
-  console.log(editpost, "editpost");
+
   const [filename, showFileName] = useState("");
   const initialPostData = {
     content: "",
@@ -28,7 +28,7 @@ function CreatePost({ editpost, setOpenMenu }) {
   const onFileChange = async (e) => {
     const file = e.target.files[0];
     showFileName(file.name);
-    console.log(file, "file");
+
     const toBase64 = (file) =>
       new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -41,7 +41,6 @@ function CreatePost({ editpost, setOpenMenu }) {
   };
 
   const addPost = (e) => {
-    console.log(postInputForm, "pif");
     e.preventDefault();
 
     if (editpost) {

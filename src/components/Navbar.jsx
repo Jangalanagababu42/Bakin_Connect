@@ -1,11 +1,10 @@
-import { faMagnifyingGlass, faMoon } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
+
 import Searchbar from "./Searchbar";
 import { useUser } from "../contexts/UserContext";
-import { usePost } from "../contexts/PostContext";
+import { faMoon } from "@fortawesome/free-solid-svg-icons";
 
 function Navbar() {
   const { filterAuthUser } = useUser();

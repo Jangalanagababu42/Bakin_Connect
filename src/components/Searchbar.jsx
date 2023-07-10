@@ -24,9 +24,7 @@ function Searchbar() {
       return searched;
     }
   };
-  console.log(SearchedData.length, "sl");
-  console.log(SearchedData(users, searchInput));
-  console.log(searchInput);
+
   useEffect(() => {
     timerId.current = setTimeout(() => {
       setSearchResult(SearchedData(users, searchInput));

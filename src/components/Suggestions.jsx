@@ -20,8 +20,6 @@ function Suggestions() {
         (user) => outeruser.username === user.username
       ) && outeruser.username !== authUser?.username
   );
-  console.log(authUser);
-  console.log(suggestedUsers, "suggestedUsers");
 
   return (
     <div className="grid col-span-3 bg-slate-200  ">

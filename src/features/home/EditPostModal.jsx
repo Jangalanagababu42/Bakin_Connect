@@ -6,8 +6,7 @@ import { usePost } from "../../contexts/PostContext";
 
 function EditPostModal({ editpost, setOpenMenu }) {
   const { editopenModal, setEditOpenModal } = usePost();
-  console.log(editopenModal, "editopenModal");
-  console.log();
+
   return (
     <div className="fixed p-4 left-0 top-0 right-0 h-screen z-50 flex justify-center items-center bg-backgrounddim ">
       <div className="w-3/5 md:w-2/6 sm:w-full flex flex-col bg-white rounded-lg  ">
@@ -16,10 +15,8 @@ function EditPostModal({ editpost, setOpenMenu }) {
 
           <button
             onClick={(e) => {
-              console.log("onclick run");
               e.stopPropagation();
               setEditOpenModal(() => {
-                console.log("edit inside onclick");
                 return false;
               });
               setOpenMenu(false);

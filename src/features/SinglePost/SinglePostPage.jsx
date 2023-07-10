@@ -9,7 +9,7 @@ function SinglePostPage() {
     postState: { posts },
   } = usePost();
   const singlePost = posts.find((currpost) => currpost._id === postId);
-  console.log(singlePost);
+
   return (
     <div className="flex flex-col  justify-items-center w-3/5	gap-4">
       <DisplayPost

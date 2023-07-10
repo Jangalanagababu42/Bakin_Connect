@@ -11,7 +11,6 @@ function ExplorePage() {
     <div className="flex flex-col  justify-items-center w-3/5	gap-4">
       {posts.map((post, index) => (
         <>
-          {console.log(post, index)}
           <DisplayPost post={post} key={post?._id} index={index} />
         </>
       ))}

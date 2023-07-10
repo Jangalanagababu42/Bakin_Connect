@@ -33,8 +33,6 @@ function PostProvider({ children }) {
   const [openModal, setOpenModal] = useState(false);
   const [editopenModal, setEditOpenModal] = useState(false);
 
-  console.log(editopenModal, "editopenModal");
-
   const [postState, postDispatch] = useReducer(PostReducer, initialPostState);
   const [clickedSort, setClickedSort] = useState("latest");
   const getAllPosts = async () => {
@@ -46,7 +44,6 @@ function PostProvider({ children }) {
     postDispatch({ type: POST_ACTIONS.getposts, payload: { posts: posts } });
   };
   const addPostHandler = async (content) => {
-    console.log(content, "pif");
     const response = await AddPostService(authToken, content, authUser._id);
 
     const {
@@ -138,7 +135,6 @@ function PostProvider({ children }) {
     postDispatch({ type: POST_ACTIONS.delete, payload: { posts: posts } });
   };
 
-  console.log(authUser, "auth");
   useEffect(() => {
     getAllPosts();
   }, []);
