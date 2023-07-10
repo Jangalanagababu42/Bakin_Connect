@@ -8,6 +8,7 @@ import { FcLike } from "react-icons/fc";
 import { BsBookmark, BsShare } from "react-icons/bs";
 import { FaRegComment } from "react-icons/fa";
 import { LiaEdit } from "react-icons/lia";
+import { toast } from "react-toastify";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
@@ -57,10 +58,20 @@ function DisplayPost({ post, index, individualpage }) {
   const bookmarkClickHandler = () => {
     if (bookmarkedByUser()) {
       removePostFromBookmarkHandler(post._id);
+      toast.success("Removed From BookMarks");
     } else {
       addBookmarkHandler(post._id);
+      toast.success("Added to BookMarks ");
     }
   };
+
+  const copyHandler = () => {
+    navigator.clipboard.writeText(
+      `https://bakin-connect.vercel.app/post/${post._id}`
+    );
+    toast.info("Link Copied. Start sharing!");
+  };
+
   return (
     <>
       {userDetails && (
@@ -110,7 +121,12 @@ function DisplayPost({ post, index, individualpage }) {
                           console.log("onclick, true");
                         }}
                       >
-                        {editopenModal && <EditPostModal editpost={post} />}
+                        {editopenModal && (
+                          <EditPostModal
+                            editpost={post}
+                            setOpenMenu={setOpenMenu}
+                          />
+                        )}
                         <LiaEdit className="mr-1" />
                         Edit
                       </button>
@@ -119,6 +135,7 @@ function DisplayPost({ post, index, individualpage }) {
                         onClick={() => {
                           DeletePostHandler(post._id);
                           setOpenMenu(false);
+                          toast.success("Post Deleted Successfully");
                           if (individualpage) navigate("/");
                         }}
                       >
@@ -183,7 +200,7 @@ function DisplayPost({ post, index, individualpage }) {
               <FaRegComment />
             </div>
             <div className="flex items-center gap-1 cursor-pointer">
-              <BsShare />
+              <BsShare onClick={() => copyHandler()} />
             </div>
           </div>
           {individualpage && <div>Hello comments</div>}

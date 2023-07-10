@@ -46,6 +46,7 @@ function PostProvider({ children }) {
     postDispatch({ type: POST_ACTIONS.getposts, payload: { posts: posts } });
   };
   const addPostHandler = async (content) => {
+    console.log(content, "pif");
     const response = await AddPostService(authToken, content, authUser._id);
 
     const {

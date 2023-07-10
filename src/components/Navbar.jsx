@@ -10,7 +10,7 @@ import { usePost } from "../contexts/PostContext";
 function Navbar() {
   const { filterAuthUser } = useUser();
   return (
-    <div className=" flex flex-row w-full h-20   p-3 justify-between  sticky top-0 z-40 shadow-xl bg-white">
+    <div className=" flex flex-row w-full h-20   p-3 justify-between  sticky top-0 z-40 shadow-xl bg-white ">
       <div
         className="h-16 w-16 flex col-span 
        "

@@ -10,7 +10,7 @@ function RootLayout() {
       <Navbar />
       <div className="grid grid-cols-12 divide-x">
         <SideBar />
-        <div className="grid col-span-7 justify-items-center gap-4 mt-6">
+        <div className="grid col-span-7 justify-items-center gap-4 mt-6  ">
           <Outlet />
         </div>
         <Suggestions />

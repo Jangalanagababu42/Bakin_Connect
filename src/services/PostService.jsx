@@ -4,16 +4,16 @@ export const PostService = () => {
   return axios.get(`/api/posts`);
 };
 
-export const AddPostService = (token, content, id) => {
-  const body = { postData: { content, userId: id } };
+export const AddPostService = (token, postData, id) => {
+  // const body = { postData: { content, userId: id } };
   const config = { headers: { authorization: `${token}` } };
-  return axios.post(`/api/posts`, body, config);
+  return axios.post(`/api/posts`, { postData }, config);
 };
 
-export const EditPostService = (token, content, postId, id) => {
-  const body = { postData: { content, userId: id } };
+export const EditPostService = (token, postData, postId, id) => {
+  // const body = { postData: { content, userId: id } };
   const config = { headers: { authorization: `${token}` } };
-  return axios.post(`/api/posts/edit/${postId}`, body, config);
+  return axios.post(`/api/posts/edit/${postId}`, { postData }, config);
 };
 
 export const getAllBookMarksService = (token) => {

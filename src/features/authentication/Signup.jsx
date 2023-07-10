@@ -6,7 +6,7 @@ import SignupService from "./services/SignupService";
 import { useAuth } from "../../contexts/AuthContext";
 import { useUser } from "../../contexts/UserContext";
 import { USER_ACTIONS } from "../../reducers/UserReducer";
-
+import { toast } from "react-toastify";
 function Signup() {
   const defaultAvatar =
     " https://res.cloudinary.com/donqbxlnc/image/upload/v1651664931/avatar-1577909_960_720_cl1ooh.png";
@@ -45,19 +45,20 @@ function Signup() {
             setAuthToken(encodedToken);
             setAuthUser(createdUser);
             navigate("/");
+            toast.success("Signed In Succesful");
             userDispatch({
               type: USER_ACTIONS.adduser,
               payload: { user: { ...createdUser, avatarUrl: defaultAvatar } },
             });
           }
         } else {
-          alert("Passwords do not match");
+          toast.error("Passwords do not match");
         }
       } else {
-        alert("Please enter all details");
+        toast.error("Please provide all details");
       }
     } catch (error) {
-      console.log(error.response.data.errors[0], "error");
+      toast.error(error.response.data.errors[0]);
     }
   };
 

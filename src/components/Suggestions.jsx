@@ -24,7 +24,7 @@ function Suggestions() {
   console.log(suggestedUsers, "suggestedUsers");
 
   return (
-    <div className="grid col-span-3 bg-slate-200 ">
+    <div className="grid col-span-3 bg-slate-200  ">
       <div>
         {location.pathname === "/" && (
           <div className="flex flex-row flex-grow justify-evenly m-4">

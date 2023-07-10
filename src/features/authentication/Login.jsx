@@ -2,6 +2,7 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import LoginService from "./services/LoginService";
 import { useAuth } from "../../contexts/AuthContext";
@@ -27,8 +28,10 @@ function Login() {
         setAuthToken(encodedToken);
         setAuthUser(foundUser);
         navigate("/");
+        toast.success("Loggeed In Succesful");
       }
     } catch (error) {
+      toast.error(error.response.data.errors[0]);
       console.log(error.response.data.errors[0], "error");
     }
   };
@@ -43,9 +46,10 @@ function Login() {
         setAuthToken(encodedToken);
         setAuthUser(foundUser);
         navigate("/");
+        toast.success("Loggeed In As Guest ");
       }
     } catch (error) {
-      console.log(error.response.data.errors[0], "error");
+      toast.error(error.response.data.errors[0]);
     }
   };
   return (

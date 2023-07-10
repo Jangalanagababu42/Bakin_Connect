@@ -12,8 +12,9 @@ import { usePost } from "../contexts/PostContext";
 
 const ActiveStyle = ({ isActive }) =>
   isActive
-    ? { backgroundColor: "yellow", color: "black" }
-    : { backgroundColor: "transparent", color: "black" };
+    ? { backgroundColor: "blue", color: "black" }
+    : { backgroundColor: "white", color: "black" };
+
 const getNavItem = (iconName, text) => (
   <div className="block  m-6  ">
     <FontAwesomeIcon icon={iconName} />
@@ -23,7 +24,7 @@ const getNavItem = (iconName, text) => (
 function SideBar() {
   const { openModal, setOpenModal } = usePost();
   return (
-    <div className="grid col-span-2 bg-slate-200 h-screen ">
+    <div className="grid col-span-2 bg-slate-200 h-screen  ">
       <div className="ml-5  ">
         <NavLink to="/" style={ActiveStyle}>
           {getNavItem(faHouse, "Home")}
@@ -43,7 +44,7 @@ function SideBar() {
         >
           Post
         </button>
-        {openModal && <PostModal closeModal={setOpenModal} />}
+        {openModal && <PostModal />}
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { BsCameraFill } from "react-icons/bs";
-
+import { toast } from "react-toastify";
 import { usePost } from "../../contexts/PostContext";
 import { useUser } from "../../contexts/UserContext";
 
@@ -13,10 +13,25 @@ function EditProfileModal({ profile }) {
   const onChangeHandler = (e) => {
     setProfileData({ ...profileData, [e.target.name]: e.target.value });
   };
+  const onFileChange = async (e) => {
+    const file = e.target.files[0];
+
+    console.log(file, "file");
+    const toBase64 = (file) =>
+      new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = (error) => reject(error);
+      });
+    let base64File = await toBase64(file);
+    setProfileData({ ...profileData, avatarUrl: base64File });
+  };
   const ProfileUpdateHandler = (e) => {
     e.stopPropagation();
     editUser(profileData);
     setprofileModal(false);
+    toast.success("Updated Successfully");
   };
   console.log(profile);
   return (
@@ -45,6 +60,16 @@ function EditProfileModal({ profile }) {
                 src={profile.avatarUrl}
                 alt="im"
                 className=" h-14 w-14  rounded-full"
+              />
+              <input
+                type="file"
+                accept="image/apng, image/avif, image/gif, image/jpeg, image/png, image/svg+xml, image/jpg,image/webp"
+                name=""
+                id=""
+                className="absolute left-8 right-0 w-5 h-5 top-8  opacity-0 cursor-pointer "
+                // maxlength="4"
+                // size="4"
+                onChange={(e) => onFileChange(e)}
               />
               <BsCameraFill className=" absolute bottom-0 right-0 text-lg" />
             </div>

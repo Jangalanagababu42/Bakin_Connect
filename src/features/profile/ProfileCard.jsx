@@ -7,7 +7,7 @@ import EditProfileModal from "./EditProfileModal";
 import { useUser } from "../../contexts/UserContext";
 import FollowingModal from "./FollowingModal";
 import FollowersModal from "./FollowersModal";
-
+import { toast } from "react-toastify";
 function ProfileCard({ profile, totalposts }) {
   console.log(profile, "profiles");
   const { authUser, setAuthToken, setAuthUser } = useAuth();
@@ -59,14 +59,20 @@ function ProfileCard({ profile, totalposts }) {
           ) : isFollowing() ? (
             <button
               className="py-1 px-2 ring-1 rounded-md text-sm sm:text-xs"
-              onClick={() => unFollowHandler(profile._id)}
+              onClick={() => {
+                unFollowHandler(profile._id);
+                toast.success(`unfollowed ${profile.username}`);
+              }}
             >
               UnFollow
             </button>
           ) : (
             <button
               className="py-1 px-2 ring-1 rounded-md text-sm sm:text-xs"
-              onClick={() => followHandler(profile._id)}
+              onClick={() => {
+                toast.success(`you started following ${profile.username}`);
+                followHandler(profile._id);
+              }}
             >
               Follow
             </button>

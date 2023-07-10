@@ -1,4 +1,6 @@
 import { Route, Routes, useNavigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 import RootLayout from "./components/RootLayout";
 import HomePage from "./features/home/HomePage";
 import ExplorePage from "./features/explore/ExplorePage";
@@ -14,6 +16,7 @@ import { useUser } from "./contexts/UserContext";
 function App() {
   return (
     <main>
+      <ToastContainer position="top-center" autoClose={800} draggable />
       <Routes>
         <Route
           path="/"

@@ -4,8 +4,10 @@ import CreatePost from "./CreatePost";
 import DisplayPost from "./DisplayPost";
 import { usePost } from "../../contexts/PostContext";
 import { useAuth } from "../../contexts/AuthContext";
+import { useNavigate, useNavigation } from "react-router-dom";
 
 function HomePage() {
+  const navigate = useNavigate();
   const {
     clickedSort,
     postState: { posts },
@@ -44,10 +46,27 @@ function HomePage() {
     <div className="flex flex-col  justify-items-center w-3/5	gap-4">
       <CreatePost />
 
-      {sortedposts &&
+      {sortedposts.length > 0 ? (
         sortedposts.map((post) => (
           <DisplayPost post={post} key={post?._id} individualpage={false} />
-        ))}
+        ))
+      ) : (
+        <div>
+          <div className="text-primary font-semibold text-lg my-2 py-5">
+            No Posts to display! Follow some users or create your own Post...{" "}
+          </div>
+          <div className=" text-lg text-center">
+            {" "}
+            <span
+              className=" text-blue font-semibold cursor-pointer hover:text-pink"
+              onClick={() => navigate("/explore")}
+            >
+              Explore{" "}
+            </span>{" "}
+            Feed
+          </div>
+        </div>
+      )}
     </div>
   );
 }
